@@ -1,0 +1,1 @@
+tentAt(3,1) tentAt(3,8) tentAt(4,3) tentAt(4,6) tentAt(6,1) tentAt(6,3) tentAt(7,8) tentAt(8,6) tentAt(1,8) tentAt(2,3) tentAt(2,5) tentAt(6,5)
