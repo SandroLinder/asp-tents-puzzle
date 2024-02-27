@@ -1,3 +1,7 @@
+import getopt
+import sys
+
+
 def parse_input_and_create_tmp_clingo_input(file_path):
     file = open(file_path, "r")
     x, y = file.readline().replace("\n", "").split(" ")
@@ -54,5 +58,19 @@ def parse_input_and_create_tmp_clingo_input(file_path):
     clingo_input.close()
 
 
+long_options = ["help", "input-file"]
+
 if __name__ == '__main__':
-    parse_input_and_create_tmp_clingo_input("examples/input/input-15-15-easy")
+    argumentList = sys.argv[1:]
+    options = "hi:"
+    try:
+        arguments, values = getopt.getopt(argumentList, options, long_options)
+
+        for currentArgument, currentValue in arguments:
+            if currentArgument in ("-h", "--help"):
+                print("Usage:")
+                print("    -input-file, -i: Relative path to puzzle input.")
+            elif currentArgument in ("-i", "--input-file"):
+                parse_input_and_create_tmp_clingo_input(currentValue)
+    except getopt.error as err:
+        print(str(err))

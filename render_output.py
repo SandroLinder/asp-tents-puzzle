@@ -1,3 +1,7 @@
+import getopt
+import sys
+
+
 def parse_tents_from_sol(sol_file):
     tent_coordinates = sol_file.readline().split(" ")
 
@@ -9,23 +13,48 @@ def parse_tents_from_sol(sol_file):
     return ret_value
 
 
+long_options = ["help", "puzzle", "solution"]
+
 if __name__ == '__main__':
-    input = open("examples/input/input-16-16-easy")
-    solution = open("examples/solutions/solution-16-16-easy.txt")
 
-    tents = parse_tents_from_sol(solution)
+    argumentList = sys.argv[1:]
+    options = "p:s:"
+    try:
+        arguments, values = getopt.getopt(argumentList, options, long_options)
+        puzzle = ""
+        solution = ""
+        for currentArgument, currentValue in arguments:
+            if currentArgument in ("-h", "--Help"):
+                print("Usage:")
+                print("    --puzzle, -p:        Relative path the puzzle input.")
+                print("    --solution, -s:      Relative path to solution file.")
+            elif currentArgument in ("-p", "--puzzle"):
+                puzzle = currentValue
+            elif currentArgument in ("-s", "--solution"):
+                solution = currentValue
 
-    height, width = input.readline().replace("\n", "").split(" ")
+        if puzzle == "" or solution == "":
+            print("Path to puzzle and path to solution must be provided. Check -h for help.")
+            exit(1)
 
-    lines = []
+        puzzle_input = open(puzzle)
+        output = open(solution)
 
-    for i in range(int(height)):
-        lines.append(list(input.readline().replace("\n", "").split(" ")[0]))
+        tents = parse_tents_from_sol(output)
 
-    for i in range(int(height)):
-        for j in range(int(width)):
-            if (i + 1, j + 1) in tents:
-                lines[i][j] = "#"
+        height, width = puzzle_input.readline().replace("\n", "").split(" ")
 
-    for i in range(int(height)):
-        print("".join(lines[i]))
+        lines = []
+
+        for i in range(int(height)):
+            lines.append(list(puzzle_input.readline().replace("\n", "").split(" ")[0]))
+
+        for i in range(int(height)):
+            for j in range(int(width)):
+                if (i + 1, j + 1) in tents:
+                    lines[i][j] = "#"
+
+        for i in range(int(height)):
+            print("".join(lines[i]))
+    except getopt.error as err:
+        print(str(err))
