@@ -10,6 +10,16 @@ Rules:
 * The given numbers for rows and columns have be equal to the number of placed tents in the respective row or column.
 
 ## Solver
+Requirements:
+* python3
+* clingo CLI tool
+
+The solver can be run by using the command:
+```
+clingo asp_tents_solution.lp <input>.lp
+```
+
+
 ## Examples
 
 This folder contains example inputs taken from https://www.puzzle-tents.com/ and https://www.brainbashers.com/tents.asp. These example inputs were converted into this format:
