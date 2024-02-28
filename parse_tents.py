@@ -15,7 +15,7 @@ def parse_input_and_create_tmp_clingo_input(file_path):
     colsums = file.readline().replace("\n", "").split(" ")
     file.close()
 
-    clingo_input = open("input.lp", "w")
+    clingo_input = open("input.lp", "w+")
 
     clingo_input.write("lines(" + x + ").\n")
     clingo_input.write("columns(" + y + ").\n")
@@ -58,19 +58,19 @@ def parse_input_and_create_tmp_clingo_input(file_path):
     clingo_input.close()
 
 
-long_options = ["help", "input-file"]
+long_options = ["help", "puzzle"]
 
 if __name__ == '__main__':
     argumentList = sys.argv[1:]
-    options = "hi:"
+    options = "hp:"
     try:
         arguments, values = getopt.getopt(argumentList, options, long_options)
 
         for currentArgument, currentValue in arguments:
             if currentArgument in ("-h", "--help"):
                 print("Usage:")
-                print("    -input-file, -i: Relative path to puzzle input.")
-            elif currentArgument in ("-i", "--input-file"):
+                print("    --puzzle, -p: Relative path to puzzle input.")
+            elif currentArgument in ("-", "--puzzle"):
                 parse_input_and_create_tmp_clingo_input(currentValue)
     except getopt.error as err:
         print(str(err))
