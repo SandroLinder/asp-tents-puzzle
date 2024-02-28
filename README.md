@@ -56,7 +56,7 @@ This file contains the domain for the tents puzzle.
 
 ### How to solve a puzzle?
 
-First convert the puzzle into the input format mentioned [here](##Input Format). Create a file and save the converted puzzle.
+First convert the puzzle into the input format mentioned [here](#input-format). Create a file and save the converted puzzle.
 Use the parse_tents.py script to convert the puzzle into the ASP format by calling:
 
 ```shell
@@ -75,7 +75,7 @@ Copy the solution form the command above and save it into a file. Then use this 
 python3 render_output.py -p <path_to_puzzle> -s <path_to_solution_file>
 ```
 
-Output will look like described [here](###render_output.py)
+Output will look like described [here](#render_outputpy)
 
 ## Examples
 
