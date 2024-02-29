@@ -13,24 +13,22 @@ def parse_tents_from_sol(sol_file):
     return ret_value
 
 
-long_options = ["help", "puzzle", "solution"]
-
 if __name__ == '__main__':
 
     argumentList = sys.argv[1:]
     options = "p:s:"
     try:
-        arguments, values = getopt.getopt(argumentList, options, long_options)
+        arguments, values = getopt.getopt(argumentList, options, [])
         puzzle = ""
         solution = ""
         for currentArgument, currentValue in arguments:
-            if currentArgument in ("-h", "--Help"):
+            if currentArgument in "-h":
                 print("Usage:")
-                print("    --puzzle, -p:        Relative path the puzzle input.")
-                print("    --solution, -s:      Relative path to solution file.")
-            elif currentArgument in ("-p", "--puzzle"):
+                print("    -p:        Relative path the puzzle input.")
+                print("    -s:      Relative path to solution file.")
+            elif currentArgument in "-p":
                 puzzle = currentValue
-            elif currentArgument in ("-s", "--solution"):
+            elif currentArgument in "-s":
                 solution = currentValue
 
         if puzzle == "" or solution == "":

@@ -43,7 +43,7 @@ Requirements:
 Parameters:
 
 ```
--p, --puzzle: Required.  Path to the puzzle file.
+-p: Required.  Path to the puzzle file.
 ```
 
 ### render_output.py
@@ -51,8 +51,8 @@ Parameters:
 Parameters:
 
 ```
--s, --solution: Required. Path to the solution file.
--p, --puzzle  : Required. Path to the puzzle file.
+-s: Required. Path to the solution file.
+-p  : Required. Path to the puzzle file.
 ```
 
 This python script takes the puzzle and the solution and renders the output like this:
