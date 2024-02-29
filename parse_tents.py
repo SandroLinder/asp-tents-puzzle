@@ -63,14 +63,17 @@ long_options = ["help", "puzzle"]
 if __name__ == '__main__':
     argumentList = sys.argv[1:]
     options = "hp:"
+
+    if len(sys.argv) < 2:
+        print("-p parameter is required!")
+        exit(1)
     try:
         arguments, values = getopt.getopt(argumentList, options, long_options)
-
         for currentArgument, currentValue in arguments:
             if currentArgument in ("-h", "--help"):
                 print("Usage:")
                 print("    --puzzle, -p: Relative path to puzzle input.")
-            elif currentArgument in ("-", "--puzzle"):
+            elif currentArgument in ("-p", "--puzzle"):
                 parse_input_and_create_tmp_clingo_input(currentValue)
     except getopt.error as err:
         print(str(err))
